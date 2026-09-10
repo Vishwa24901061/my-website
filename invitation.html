@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>V Fashion Showroom</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Parisienne&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #eee9df;
+            color: #171512;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* =========================
+           DECORATIVE CURVES
+        ========================== */
+
+        .curve {
+            position: absolute;
+            width: 430px;
+            height: 300px;
+            border: 2px solid #741d19;
+            border-radius: 50%;
+            transform: rotate(-25deg);
+            top: -180px;
+            left: -50px;
+        }
+
+        .curve-bottom {
+            position: absolute;
+            width: 380px;
+            height: 300px;
+            border: 2px solid #741d19;
+            border-radius: 50%;
+            bottom: -200px;
+            right: -100px;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            padding: 35px 6%;
+
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 95px;
+            line-height: 70px;
+            font-weight: 600;
+        }
+
+        .logo span {
+            font-size: 30px;
+            vertical-align: top;
+        }
+
+        .fashion-text {
+            letter-spacing: 12px;
+            font-size: 17px;
+            margin-top: 20px;
+        }
+
+        .tagline {
+            text-align: right;
+            letter-spacing: 6px;
+            font-size: 11px;
+            line-height: 2;
+        }
+
+        .tagline-line {
+            width: 55px;
+            height: 1px;
+            background: #222;
+            margin: 25px 0 0 auto;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================== */
+
+        .main {
+            display: grid;
+
+            grid-template-columns: 46% 54%;
+
+            min-height: 850px;
+
+            padding: 20px 5% 70px;
+
+            gap: 50px;
+        }
+
+
+        /* =========================
+           LEFT IMAGE SECTION
+        ========================== */
+
+        .image-section {
+            position: relative;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            min-height: 750px;
+        }
+
+
+        /* Grey arch */
+
+        .image-background {
+            position: absolute;
+
+            width: 390px;
+            height: 650px;
+
+            background: #91897d;
+
+            border-radius: 200px 200px 0 0;
+
+            top: 20px;
+            right: 7%;
+
+            overflow: hidden;
+        }
+
+
+        /* Burgundy circle */
+
+        .image-background::after {
+            content: "";
+
+            position: absolute;
+
+            width: 100%;
+            height: 45%;
+
+            background: #7d2823;
+
+            border-radius: 50% 50% 0 0;
+
+            bottom: 0;
+
+            opacity: 0.95;
+        }
+
+
+        /* =========================
+           MEN + WOMEN IMAGE
+        ========================== */
+
+        .main-image {
+            position: absolute;
+
+            width: 390px;
+            height: 650px;
+
+            object-fit: cover;
+
+            object-position: center;
+
+            top: 20px;
+            right: 7%;
+
+            z-index: 2;
+
+            border-radius: 200px 200px 0 0;
+
+            filter: grayscale(20%) contrast(105%);
+
+            /* Makes the image blend with the design */
+            mix-blend-mode: multiply;
+
+            opacity: 0.88;
+        }
+
+
+        /* Dark overlay */
+
+        .image-overlay {
+            position: absolute;
+
+            width: 390px;
+            height: 650px;
+
+            top: 20px;
+            right: 7%;
+
+            z-index: 3;
+
+            border-radius: 200px 200px 0 0;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(20,18,15,0.05),
+                    rgba(20,18,15,0.15)
+                );
+
+            pointer-events: none;
+        }
+
+
+        /* =========================
+           SMALL SHOWROOM IMAGE
+        ========================== */
+
+        .small-image {
+            position: absolute;
+
+            width: 310px;
+            height: 275px;
+
+            object-fit: cover;
+
+            bottom: 0;
+            left: 0;
+
+            border: 5px solid #eee9df;
+
+            z-index: 6;
+        }
+
+
+        /* =========================
+           VERTICAL TEXT
+        ========================== */
+
+        .vertical-text {
+            position: absolute;
+
+            left: -25px;
+            top: 180px;
+
+            writing-mode: vertical-rl;
+
+            transform: rotate(180deg);
+
+            letter-spacing: 6px;
+
+            font-size: 11px;
+
+            z-index: 10;
+        }
+
+
+        /* =========================
+           RIGHT CONTENT
+        ========================== */
+
+        .content {
+            padding-top: 60px;
+
+            max-width: 650px;
+
+            position: relative;
+
+            z-index: 5;
+        }
+
+        .invitation {
+            letter-spacing: 8px;
+
+            font-size: 16px;
+
+            margin-bottom: 25px;
+        }
+
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 90px;
+
+            line-height: 0.8;
+
+            font-weight: 500;
+
+            letter-spacing: -3px;
+        }
+
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 82px;
+
+            color: #851f1b;
+
+            font-style: italic;
+
+            line-height: 1;
+
+            font-weight: 500;
+        }
+
+
+        .categories {
+            margin-top: 28px;
+
+            letter-spacing: 7px;
+
+            font-size: 13px;
+        }
+
+
+        .description {
+            margin-top: 45px;
+
+            max-width: 520px;
+
+            font-size: 16px;
+
+            line-height: 1.8;
+
+            color: #4b4741;
+        }
+
+
+        /* =========================
+           EVENT DETAILS
+        ========================== */
+
+        .event-details {
+            margin-top: 45px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 28px;
+        }
+
+
+        .detail {
+            display: flex;
+
+            align-items: center;
+
+            gap: 25px;
+        }
+
+
+        .icon {
+            width: 48px;
+            height: 48px;
+
+            border: 2px solid #191714;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            font-size: 21px;
+
+            flex-shrink: 0;
+        }
+
+
+        .detail-title {
+            font-size: 11px;
+
+            letter-spacing: 6px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .detail-text {
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 21px;
+        }
+
+
+        .address {
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           QUOTE
+        ========================== */
+
+        .quote {
+            font-family: 'Parisienne', cursive;
+
+            font-size: 43px;
+
+            color: #171512;
+
+            margin-top: 45px;
+
+            line-height: 1.2;
+
+            transform: rotate(-5deg);
+
+            width: 330px;
+        }
+
+
+        .quote-line {
+            width: 220px;
+
+            height: 2px;
+
+            background: #741d19;
+
+            transform: rotate(-7deg);
+
+            margin-left: 40px;
+
+            margin-top: 10px;
+        }
+
+
+        /* =========================
+           RSVP BUTTON
+        ========================== */
+
+        .rsvp {
+            display: inline-block;
+
+            margin-top: 45px;
+
+            padding: 18px 40px;
+
+            background: #171512;
+
+            color: white;
+
+            text-decoration: none;
+
+            letter-spacing: 5px;
+
+            font-size: 13px;
+
+            transition: 0.3s;
+        }
+
+
+        .rsvp:hover {
+            background: #741d19;
+
+            transform: translateY(-3px);
+        }
+
+
+        /* =========================
+           BOTTOM BLACK DESIGN
+        ========================== */
+
+        .bottom-box {
+            position: absolute;
+
+            bottom: 0;
+            left: 0;
+
+            width: 370px;
+            height: 180px;
+
+            background: #171512;
+
+            clip-path:
+                polygon(
+                    0 15%,
+                    75% 0,
+                    100% 100%,
+                    0 100%
+                );
+
+            z-index: 1;
+        }
+
+
+        .bottom-text {
+            position: absolute;
+
+            bottom: 35px;
+            left: 210px;
+
+            color: white;
+
+            letter-spacing: 7px;
+
+            font-size: 11px;
+
+            line-height: 2.5;
+
+            z-index: 3;
+        }
+
+
+        /* =========================
+           RESPONSIVE TABLET
+        ========================== */
+
+        @media (max-width: 1000px) {
+
+            .main {
+                grid-template-columns: 1fr;
+            }
+
+            .image-section {
+                min-height: 720px;
+            }
+
+            .content {
+                padding: 30px 5%;
+            }
+
+            h1 {
+                font-size: 70px;
+            }
+
+            h2 {
+                font-size: 65px;
+            }
+        }
+
+
+        /* =========================
+           RESPONSIVE MOBILE
+        ========================== */
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 25px;
+            }
+
+            .logo {
+                font-size: 65px;
+            }
+
+            .fashion-text {
+                font-size: 11px;
+
+                letter-spacing: 7px;
+            }
+
+            .tagline {
+                font-size: 8px;
+
+                letter-spacing: 3px;
+            }
+
+            .main {
+                padding: 10px 20px 50px;
+
+                gap: 10px;
+            }
+
+            .image-section {
+                min-height: 600px;
+            }
+
+            .image-background,
+            .main-image,
+            .image-overlay {
+                width: 280px;
+
+                height: 500px;
+
+                right: 5%;
+            }
+
+            .main-image {
+                object-position: center;
+            }
+
+            .small-image {
+                width: 190px;
+
+                height: 170px;
+            }
+
+            h1 {
+                font-size: 55px;
+            }
+
+            h2 {
+                font-size: 50px;
+            }
+
+            .invitation {
+                font-size: 11px;
+
+                letter-spacing: 5px;
+            }
+
+            .categories {
+                font-size: 10px;
+
+                letter-spacing: 4px;
+            }
+
+            .description {
+                font-size: 14px;
+            }
+
+            .quote {
+                font-size: 35px;
+            }
+
+            .bottom-box {
+                width: 250px;
+            }
+
+            .bottom-text {
+                left: 120px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <!-- Decorative curves -->
+
+    <div class="curve"></div>
+
+    <div class="curve-bottom"></div>
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div>
+
+            <div class="logo">
+                V<span>✦</span>
+            </div>
+
+            <div class="fashion-text">
+                FASHION
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <div class="tagline">
+                TRENDING STYLES<br>
+                TIMELESS YOU
+            </div>
+
+            <div class="tagline-line"></div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <section class="main">
+
+
+        <!-- ================= LEFT ================= -->
+
+        <div class="image-section">
+
+
+            <!-- Vertical text -->
+
+            <div class="vertical-text">
+                CLOTHES / ACCESSORIES / FOOTWEAR / MORE
+            </div>
+
+
+            <!-- Background arch -->
+
+            <div class="image-background"></div>
+
+
+            <!--
+                MEN + WOMEN FASHION IMAGE
+
+                You can replace this image URL
+                with your own image.
+            -->
+
+            <img
+                class="main-image"
+                src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85"
+                alt="Men and Women Fashion Models"
+            >
+
+
+            <!-- Image overlay -->
+
+            <div class="image-overlay"></div>
+
+
+            <!-- Small showroom image -->
+
+            <img
+                class="small-image"
+                src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=700&q=85"
+                alt="Fashion Showroom"
+            >
+
+        </div>
+
+
+        <!-- ================= RIGHT ================= -->
+
+        <div class="content">
+
+
+            <div class="invitation">
+                YOU ARE INVITED TO OUR
+            </div>
+
+
+            <h1>
+                FASHION
+            </h1>
+
+
+            <h2>
+                SHOWROOM
+            </h2>
+
+
+            <div class="categories">
+                MEN &nbsp; / &nbsp;
+                WOMEN &nbsp; / &nbsp;
+                LIFESTYLE
+            </div>
+
+
+            <p class="description">
+
+                Step into a world of style.
+                Explore our curated collection
+                of contemporary fashion for both
+                men and women — where elegance
+                meets everyday confidence.
+
+            </p>
+
+
+            <!-- ================= EVENT DETAILS ================= -->
+
+            <div class="event-details">
+
+
+                <!-- DATE -->
+
+                <div class="detail">
+
+                    <div class="icon">
+                        📅
+                    </div>
+
+                    <div>
+
+                        <div class="detail-title">
+                            DATE
+                        </div>
+
+                        <div class="detail-text">
+                            27 September 2026
+                            <br>
+                            (Sunday)
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TIME -->
+
+                <div class="detail">
+
+                    <div class="icon">
+                        ◷
+                    </div>
+
+                    <div>
+
+                        <div class="detail-title">
+                            TIME
+                        </div>
+
+                        <div class="detail-text">
+                            10:00 AM – 7:00 PM
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VENUE -->
+
+                <div class="detail">
+
+                    <div class="icon">
+                        📍
+                    </div>
+
+                    <div>
+
+                        <div class="detail-title">
+                            VENUE
+                        </div>
+
+                        <div class="detail-text address">
+
+                            V Fashion Showroom
+                            <br>
+
+                            12, 3rd Avenue, Anna Nagar
+                            <br>
+
+                            Chennai – 600040
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= QUOTE ================= -->
+
+            <div class="quote">
+
+                Fashion<br>
+                brings people<br>
+                together.
+
+            </div>
+
+
+            <div class="quote-line"></div>
+
+
+            <!-- ================= RSVP ================= -->
+
+            <a href="#rsvp" class="rsvp">
+                RSVP NOW &nbsp; →
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= BOTTOM ================= -->
+
+    <div class="bottom-box"></div>
+
+
+    <div class="bottom-text">
+
+        STYLE<br>
+        QUALITY<br>
+        CONFIDENCE
+
+    </div>
+
+
+</div>
